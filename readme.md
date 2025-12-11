@@ -1,3 +1,85 @@
+# Distributed Transmission Threshold Optimization (FODTO / PODTO / LODTO)
+
+> Python implementations of sequential and parallel distributed transmission threshold
+> optimization algorithms for ground-aerial wireless networks under Rayleigh/Rician fading.
+
+---
+
+## Table of contents
+
+- [Overview](#overview)  
+- [Files](#files)  
+- [How to Run](#how-to-run)  
+- [Configuration](#configuration)  
+- [Reproducibility](#reproducibility)  
+
+---
+
+## Overview
+
+Python implementations of **sequential** and **parallel** distributed transmission threshold optimization algorithms for wireless networks with UAVs and ground nodes.  
+
+The algorithms (FODTO, PODTO, LODTO) optimize each node’s **transmission threshold** to maximize effective throughput under:
+- Queueing constraints  
+- SINR constraints  
+
+Channel models include both **Rayleigh** and **Rician** fading, and the scripts can be used for:
+- Performance evaluation under different network densities  
+- Comparing sequential vs. parallel distributed optimization  
+- Debugging and benchmarking new algorithmic variants
+
+---
+
+## Files
+
+- **`Parallel-FODTO-PODTO.py`**  
+  Parallel implementations of:
+  - Fully-Observable Distributed Transmission Optimization (FODTO), where each node maintains a **full view** of all nodes’ transmission thresholds.  
+  - Partially-Observable Distributed Transmission Optimization (PODTO), where each node maintains a **partial view** of the network's transmission thresholds.
+
+- **`Parallel-LODTO.py`**  
+  Parallel implementation of Locally-Observable Distributed Transmission Optimization (LODTO), where each node maintains its own **local view** (e.g., neighbors) of other nodes’ transmission thresholds.
+
+- **`Sequential-XODTO.py`**  
+  Sequential (non-parallel) implementations of FODTO, PODTO, and LODTO, useful for:
+  - Debugging  
+  - Comparison against the parallel versions
+
+---
+
+## How to Run
+
+From the repository root:
+
+   - python Parallel-FODTO-PODTO.py
+   - python Parallel-LODTO.py
+   - python Sequential-XODTO.py
+
+Each script:
+- Randomly generates a 3D Poisson network of nodes (including UAVs).
+- Runs the corresponding XODTO algorithm(s) for a fixed number of iterations.
+- Prints the evolution of transmission thresholds and effective throughput
+  to the console until convergence.
+
+---
+
+## Configuration
+
+All key simulation parameters (e.g., number of sub-channels, path loss
+parameters, network density, time slot duration, SINR threshold, maximum
+iterations, and drop probability) are defined at the top of each script.
+Modify these values to explore different network scenarios.
+
+---
+
+## Reproducibility
+
+The node locations and fading realizations are random. For reproducible
+experiments, set the random seeds (e.g., via NumPy and random) at the top
+of the scripts before running.
+
+---
+
 # Predicting Optimization Outputs — Multi-Model Surrogate Modeling Suite
 
 > Replace a computational optimization algorithm with fast learned surrogates (classical ML, MLP, Transformer, sequential models).
